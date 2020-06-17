@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace vega.Models
 {
-    public class Make
+        [Table("Features")]
+        public class Feature
     {
         public int Id {get; set;}
 
@@ -12,14 +14,21 @@ namespace vega.Models
         [StringLength(255)]
         public string Name {get; set;}
 
-        public ICollection<Model> Models {get; set;} 
         public IList<FeatureMakeJoin> FeatureMakeJoins {get; set;} 
 
-        public Make()
+        public Feature()
         {
-            Models = new Collection<Model>();
             FeatureMakeJoins = new Collection<FeatureMakeJoin>();
         }
-
     }
+
+
+        public class FeatureMakeJoin
+    {    
+    public int FeatureId { get; set; }
+    public Feature Feature { get; set; }
+    public int MakeId { get; set; }
+    public Make Make { get; set; }
+    }
+
 }
