@@ -21,14 +21,4 @@ namespace vega.Models
             FeatureMakeJoins = new Collection<FeatureMakeJoin>();
         }
     }
-
-
-        public class FeatureMakeJoin
-    {    
-    public int FeatureId { get; set; }
-    public Feature Feature { get; set; }
-    public int MakeId { get; set; }
-    public Make Make { get; set; }
-    }
-
 }

@@ -1,10 +1,19 @@
 using Microsoft.EntityFrameworkCore;
 using vega.Models;
+using vega.Core;
 
 namespace vega.Persistence
 {
+
+
+
     public class VegaDbContext : DbContext
     {
+        public DbSet<Vehicle> Vehicles {get; set;}
+        public DbSet<Make> Makes {get; set;}
+        public DbSet<Feature> Features {get; set;}
+        public DbSet<FeatureMakeJoin> FeatureMakeJoins {get; set;}
+
         public VegaDbContext(DbContextOptions<VegaDbContext> options) 
             : base(options)
         {
@@ -23,11 +32,12 @@ namespace vega.Persistence
                 .HasOne<Feature>(fmj => fmj.Feature)
                 .WithMany(f => f.FeatureMakeJoins)
                 .HasForeignKey(fmj => fmj.FeatureId);
+
+            modelBuilder.Entity<VehicleFeature>().HasKey(vf =>
+            new {vf.VehicleId, vf.FeatureId});
         }
 
-        public DbSet<Make> Makes {get; set;}
-        public DbSet<Feature> Features {get; set;}
-        public DbSet<FeatureMakeJoin> FeatureMakeJoins {get; set;}
+
 
     }
 }
