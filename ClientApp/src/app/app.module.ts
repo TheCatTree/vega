@@ -1,3 +1,7 @@
+import { PaginationComponent } from './shared/pagination.component';
+import { HttpErrorResponse } from "@angular/common/http";
+import { environment } from "../environments/environment";
+
 import { VehicleService } from './../../services/Vehicle.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component, ErrorHandler } from '@angular/core';
@@ -14,6 +18,20 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { VehicleFormComponent } from './vehicle-form/vehicle-form.component';
 import { AppErrorHandler } from './app.error-handler';
 
+import * as Sentry from "@sentry/browser";
+import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
+
+Sentry.init({
+  dsn: "https://668949139a2c407ca09f347a3902b5f4@o430218.ingest.sentry.io/5378306",
+  // TryCatch has to be configured to disable XMLHttpRequest wrapping, as we are going to handle
+  // http module exceptions manually in Angular's ErrorHandler and we don't want it to capture the same error twice.
+  // Please note that TryCatch configuration requires at least @sentry/browser v5.16.0.
+  integrations: [new Sentry.Integrations.TryCatch({
+    XMLHttpRequest: false,
+  })],
+});
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +40,8 @@ import { AppErrorHandler } from './app.error-handler';
     CounterComponent,
     FetchDataComponent,
     VehicleFormComponent,
+    VehicleListComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -29,10 +49,13 @@ import { AppErrorHandler } from './app.error-handler';
     FormsModule,
     ToastyModule.forRoot(),
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', redirectTo: 'vehicles', pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'vehicles/new', component: VehicleFormComponent},
+      { path: 'vehicles/:id', component: VehicleFormComponent},
+      { path: 'vehicles', component: VehicleListComponent},
+      { path: 'home', component: HomeComponent},
     ]),
   ],
   providers: [

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using vega.Core.Models;
 
 namespace vega.Mapping
 {
@@ -15,6 +16,8 @@ namespace vega.Mapping
     {
         public MappingProfile() {
             // Domain to API Resource
+            CreateMap(typeof(QueryResult<>), typeof(QueryResultResource<>));
+            CreateMap<VehicleQuery,VehicleQueryResource>();
             CreateMap<Make,MakeResource>();
             CreateMap<Make,KeyValuePairResource>();
             CreateMap<Model,KeyValuePairResource>();

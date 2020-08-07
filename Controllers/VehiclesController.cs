@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
-
+using System.Collections.Generic;
 using System;
 using System.Threading.Tasks;
 using vega.Controllers.Resources;
 using AutoMapper;
 using vega.Models;
 using vega.Core;
+using vega.Core.Models;
 
 namespace vega.Controllers
 {
@@ -82,6 +83,15 @@ namespace vega.Controllers
 
             var vehicleResource = mapper.Map<Vehicle, VehicleResource>(vehicle);
             return Ok(vehicleResource);
+        }
+
+        [HttpGet]
+        public async Task<QueryResultResource<VehicleResource>> GetVehicles(VehicleQueryResource vehicleQueryResource){
+            var query = mapper.Map<VehicleQueryResource, VehicleQuery>(vehicleQueryResource);
+            var queryResult = await repository.GetVehicles(query);
+
+            return mapper.Map<QueryResult<Vehicle>, QueryResultResource<VehicleResource>>(queryResult);
+            
         }
 
     }

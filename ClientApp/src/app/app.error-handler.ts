@@ -1,5 +1,6 @@
 import { ToastyService } from 'ng2-toasty';
-import { ErrorHandler, Inject, NgZone } from "@angular/core";
+import { ErrorHandler, Inject, NgZone, isDevMode } from "@angular/core";
+import * as Sentry from "@sentry/browser";
 
 export class AppErrorHandler implements ErrorHandler {
   constructor(
@@ -8,7 +9,12 @@ export class AppErrorHandler implements ErrorHandler {
   }
 
   handleError(error: any): void {
-    //console.log("Error");
+      if(!isDevMode())
+        Sentry.captureException(error.originalError || error);
+      else
+        throw error;
+
+        //console.log("Error");
     this.ngZone.run(() => {
        this.toastyService.error({
         title: 'Error',
