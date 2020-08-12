@@ -4,7 +4,7 @@ namespace vega.Extensions
     {
         string SortBy {get; set;}
 
-        bool IsSortAcending {get; set;}
+        bool IsSortAscending {get; set;}
         int Page {get; set;}
         int PageSize {get; set;}
     }

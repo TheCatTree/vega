@@ -1,7 +1,6 @@
 using AutoMapper;
 using System.Linq;
 using vega.Controllers.Resources;
-using vega.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;

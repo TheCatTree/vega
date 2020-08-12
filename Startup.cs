@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using vega.Persistence;
 using vega.Core;
+using vega.Core.Models;
 using AutoMapper;
 
 namespace vega

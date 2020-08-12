@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using vega.Models;
+using vega.Core.Models;
 
 namespace vega.Extensions
 {
@@ -13,7 +13,7 @@ namespace vega.Extensions
             if (String.IsNullOrWhiteSpace(queryObject.SortBy) || !columnsMap.ContainsKey(queryObject.SortBy))
                 return query;
 
-            if (queryObject.IsSortAcending)
+            if (queryObject.IsSortAscending)
                 query = query.OrderBy(columnsMap[queryObject.SortBy]);
             else
                 query = query.OrderByDescending(columnsMap[queryObject.SortBy]);
