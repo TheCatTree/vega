@@ -1,6 +1,6 @@
 using vega.Extensions;
 
-namespace vega.Models
+namespace vega.Core.Models
 {
     public class VehicleQuery : IQueryObject
     {
@@ -10,7 +10,7 @@ namespace vega.Models
 
         public string SortBy {get; set;}
 
-        public bool IsSortAcending {get; set;}
+        public bool IsSortAscending {get; set;}
 
         public int Page {get; set;}
         public int PageSize {get; set;}

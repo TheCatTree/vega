@@ -2,10 +2,9 @@ using System;
 using System.Threading;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using vega.Models;
 using vega.Core.Models;
 
-namespace vega.Core
+namespace vega.Core.Models
 {
     public interface IVehicleRepository
     {

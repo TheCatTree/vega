@@ -1,7 +1,8 @@
 import { ToastyService } from 'ng2-toasty';
-import { ErrorHandler, Inject, NgZone, isDevMode } from "@angular/core";
+import { ErrorHandler, Inject, NgZone, isDevMode, Injectable } from "@angular/core";
 import * as Sentry from "@sentry/browser";
 
+@Injectable()
 export class AppErrorHandler implements ErrorHandler {
   constructor(
     private ngZone: NgZone,

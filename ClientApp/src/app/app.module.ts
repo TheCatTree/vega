@@ -20,6 +20,8 @@ import { AppErrorHandler } from './app.error-handler';
 
 import * as Sentry from "@sentry/browser";
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
+import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 Sentry.init({
   dsn: "https://668949139a2c407ca09f347a3902b5f4@o430218.ingest.sentry.io/5378306",
@@ -42,6 +44,7 @@ Sentry.init({
     VehicleFormComponent,
     VehicleListComponent,
     PaginationComponent,
+    ViewVehicleComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -53,10 +56,13 @@ Sentry.init({
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'vehicles/new', component: VehicleFormComponent},
-      { path: 'vehicles/:id', component: VehicleFormComponent},
+      { path: 'vehicles/edit/:id', component: ViewVehicleComponent},
+      { path: 'vehicles/:id', component: ViewVehicleComponent},
       { path: 'vehicles', component: VehicleListComponent},
       { path: 'home', component: HomeComponent},
+      { path: '**', redirectTo: 'home'},
     ]),
+    NgbModule,
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler},

@@ -4,7 +4,6 @@ using System;
 using System.Threading.Tasks;
 using vega.Controllers.Resources;
 using AutoMapper;
-using vega.Models;
 using vega.Core;
 using vega.Core.Models;
 
