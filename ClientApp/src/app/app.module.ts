@@ -21,6 +21,7 @@ import { AppErrorHandler } from './app.error-handler';
 import * as Sentry from "@sentry/browser";
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 Sentry.init({
   dsn: "https://668949139a2c407ca09f347a3902b5f4@o430218.ingest.sentry.io/5378306",
@@ -61,6 +62,7 @@ Sentry.init({
       { path: 'home', component: HomeComponent},
       { path: '**', redirectTo: 'home'},
     ]),
+    NgbModule,
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler},
