@@ -85,8 +85,8 @@ namespace vega.Controllers
         }
 
         [HttpGet]
-        public async Task<QueryResultResource<VehicleResource>> GetVehicles(VehicleQueryResource vehicleQueryResource){
-            var query = mapper.Map<VehicleQueryResource, VehicleQuery>(vehicleQueryResource);
+        public async Task<QueryResultResource<VehicleResource>> GetVehicles(VehicleQueryResource filterResource){
+            var query = mapper.Map<VehicleQueryResource, VehicleQuery>(filterResource);
             var queryResult = await repository.GetVehicles(query);
 
             return mapper.Map<QueryResult<Vehicle>, QueryResultResource<VehicleResource>>(queryResult);
